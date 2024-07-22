@@ -1,8 +1,9 @@
+import Nav from "@/components/Nav";
+import { ThemeProvider } from "@/components/theme-provider";
+import { api } from "@/utils/api";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
-
-import { api } from "@/utils/api";
 
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
@@ -20,14 +21,24 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <main
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
       >
-        <Component {...pageProps} />
-      </main>
+        <main
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable,
+          )}
+        >
+          <div className="flex w-full justify-center pt-3">
+            <Nav />
+          </div>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
     </SessionProvider>
   );
 };

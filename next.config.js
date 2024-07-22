@@ -18,6 +18,22 @@ const config = {
     defaultLocale: "en",
   },
   transpilePackages: ["geist"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.heise.de",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default config;
